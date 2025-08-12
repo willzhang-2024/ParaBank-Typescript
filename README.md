@@ -3,6 +3,8 @@
 ## Overview
 This project is designed to automate end-to-end testing for a web application using Typescript and Playwright. It includes functionalities such as user registration, account creation, fund transfer, bill payment, and transaction search. In addition, CI/CD is integrated with github actions and Jenkins pipeline
 
+Two test environments are set up: dev and qa (only qa is valid)
+
 ## Features
 UI Automation
 - **User Registration**: Automates the registration process and verifies success.
@@ -38,6 +40,7 @@ npx playwright install
 
 **Run test**
 ```shell
+$env:ENV='qa'
 npx playwright test
 ```
 
@@ -48,6 +51,7 @@ npx playwright test
 │   └───workflows
 ├───api
 ├───data
+├───env
 ├───pages
 ├───tests
 ├───trace

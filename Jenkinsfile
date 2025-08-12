@@ -3,8 +3,18 @@ pipeline {
     tools {
         nodejs "NodeJS Default"
     }
+    
+    environment {
+        ENV = 'qa'  // Set environment variable for all steps
+    }
 
     stages {
+
+        stage('Install Dependencies') {
+            steps {
+                bat 'npm ci'
+            }
+        }
 
         stage('Install Playwright') {
             steps {
@@ -14,9 +24,9 @@ pipeline {
             }
         }
 
-        stage('Clean Trace Folder') {
+        stage('Clean Test Results Folder') {
             steps {
-                bat 'if exist trace rmdir /s /q trace'
+                bat 'if exist test-results rmdir /s /q test-results'
             }
         }
 
@@ -40,10 +50,10 @@ pipeline {
 
         stage('Archive Playwright Traces') {
             when {
-                expression { fileExists('trace') }
+                expression { fileExists('test-results') }
             }
             steps {
-                archiveArtifacts artifacts: 'trace/**', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'test-results/**/*.zip', allowEmptyArchive: true
             }
         }
     }
