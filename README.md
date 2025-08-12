@@ -24,8 +24,8 @@ API automation
 
 **Set up local project**
 ```shell
-$ git clone https://github.com/willzhang-lb/Parabank-typescript.git
-$ cd Parabank-typescript
+$ git clone https://github.com/willzhang-2024/ParaBank-Typescript.git
+$ cd ParaBank-Typescript
 ```
 
 **Install dependencies**
