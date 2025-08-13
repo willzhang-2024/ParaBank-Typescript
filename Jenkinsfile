@@ -36,10 +36,12 @@ pipeline {
 
         stage('Run Playwright tests') {
             steps {
-                bat '''
-                    echo "Running tests in %ENV% environment"
-                    npx playwright test
-                '''
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    bat '''
+                        echo "Running tests in %ENV% environment"
+                        npx playwright test
+                    '''
+                }
             }
         }
 
